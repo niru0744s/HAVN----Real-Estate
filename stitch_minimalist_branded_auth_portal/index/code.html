@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HAVN - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#45474d",
+                      "tertiary-fixed": "#e4e2dd",
+                      "surface-container-low": "#f7f3ee",
+                      "tertiary-container": "#1d1d1a",
+                      "surface-bright": "#fdf9f3",
+                      "outline-variant": "#c5c6cd",
+                      "on-tertiary-fixed-variant": "#474744",
+                      "surface-container-high": "#ece8e2",
+                      "primary": "#00030c",
+                      "outline": "#75777e",
+                      "surface-dim": "#ddd9d4",
+                      "secondary-container": "#fed6b0",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-fixed": "#1b1c19",
+                      "secondary-fixed": "#ffdcbc",
+                      "surface": "#fdf9f3",
+                      "on-secondary-container": "#795b3d",
+                      "on-background": "#1c1c19",
+                      "on-primary-fixed-variant": "#3b475f",
+                      "on-tertiary-container": "#858581",
+                      "on-surface": "#1c1c19",
+                      "on-primary": "#ffffff",
+                      "secondary": "#76593b",
+                      "tertiary": "#020302",
+                      "surface-container-highest": "#e6e2dd",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#bac7e4",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#e6c09b",
+                      "background": "#fdf9f3",
+                      "surface-container": "#f1ede8",
+                      "on-primary-container": "#7985a0",
+                      "on-secondary-fixed-variant": "#5c4125",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#c8c6c2",
+                      "on-primary-fixed": "#0e1b31",
+                      "on-secondary-fixed": "#2b1702",
+                      "primary-fixed": "#d7e3ff",
+                      "on-error": "#ffffff",
+                      "primary-container": "#101d33",
+                      "surface-variant": "#e6e2dd",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#bac7e4",
+                      "inverse-on-surface": "#f4f0eb",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-surface": "#31302d",
+                      "surface-tint": "#525f78"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "24px",
+                      "gutter": "32px",
+                      "container-max": "1280px",
+                      "unit": "8px",
+                      "margin-desktop": "64px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "EB Garamond"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "display-lg-mobile": [
+                              "EB Garamond"
+                      ],
+                      "headline-md": [
+                              "EB Garamond"
+                      ],
+                      "data-mono": [
+                              "Manrope"
+                      ],
+                      "title-lg": [
+                              "Manrope"
+                      ],
+                      "body-sm": [
+                              "Manrope"
+                      ],
+                      "label-caps": [
+                              "Manrope"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .glass-panel {
+            background: rgba(253, 249, 243, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 3, 12, 0.1);
+        }
+        .glass-panel-dark {
+            background: rgba(16, 29, 51, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen relative pb-32 md:pb-0 overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl fixed top-0 w-full z-50 shadow-sm border-b border-primary/10 dark:border-white/10 backdrop-blur-3xl duration-500 ease-in-out">
+<div class="flex items-center justify-between px-margin-mobile h-20 max-w-[1280px] mx-auto">
+<button class="text-outline dark:text-outline-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary dark:text-primary-fixed">HAVN</h1>
+<button class="text-outline dark:text-outline-variant hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">tune</span>
+</button>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section: Featured Sanctuary Carousel -->
+<section class="w-full mb-margin-desktop md:mb-16">
+<div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+<!-- Carousel Item 1 -->
+<div class="relative w-full h-[70vh] min-h-[500px] flex-none snap-center">
+<img alt="Featured luxury property" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ujZJn2rkbacnoH-8rt3OkQqPtvd6GPTNzMA_I9CtRpZvqmmGYr5Mi6DfLKXyph6SPE8uFMVCxA1GqU0X3UOJ3wykPkFc9GfVFUd5oo0pN7UBCa8PSbKm_EigEp76jtzkHKL5cNXiqR76S6RFb5Kpx1q5obYnDajy4iaZPH1toayqUslyU69Ur07v1qcs25Iozrv26oayKXz2X33EHHtO3XfffqaA7q6sHYZ1FKsDq1ojOMROEWqAtZ6uWqZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-margin-mobile left-margin-mobile right-margin-mobile md:left-auto md:right-margin-desktop md:bottom-margin-desktop md:w-96 glass-panel rounded-xl p-6 shadow-[0px_24px_48px_rgba(16,29,51,0.08)]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">Featured Sanctuary</p>
+<h2 class="font-headline-md text-headline-md text-primary">The Glass House</h2>
+</div>
+<span class="material-symbols-outlined text-primary">bookmark_border</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Sonoma Valley, CA
+                        </p>
+<div class="flex justify-between items-end border-t border-primary/10 pt-4">
+<p class="font-title-lg text-title-lg text-primary">$4,250,000</p>
+<button class="bg-primary text-on-primary font-body-md text-body-md px-6 py-2 rounded-DEFAULT hover:opacity-90 transition-opacity">View</button>
+</div>
+</div>
+</div>
+<!-- Carousel Item 2 -->
+<div class="relative w-full h-[70vh] min-h-[500px] flex-none snap-center">
+<img alt="Modern architectural home" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNIikNS4161dJwmm2_CfyZSwAV_VDLq7bwDs_DO080aLoqJcFLrcd0HzkTWYpfE11clIxYoHS-sdy7IaUNyLZ8y0tsvkrgt-SsmFDpRGThubifEWCMEQHpzZcdlzCYAgk0VVvpeVbNet_RKXsIF4FApaLQvLec2z5XuDxOCGiiGv4Zr4vpyQ8p7yPc5yRiLpmcIfbr0cWNtT1B6ntlFusiU2LpIZ6T0PwXmd9Cn4jFueWV6v2fwf1liGr2pKywTVIqf8zSbf7REkQH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-margin-mobile left-margin-mobile right-margin-mobile md:left-auto md:right-margin-desktop md:bottom-margin-desktop md:w-96 glass-panel rounded-xl p-6 shadow-[0px_24px_48px_rgba(16,29,51,0.08)]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="font-label-caps text-label-caps text-secondary mb-1">Featured Sanctuary</p>
+<h2 class="font-headline-md text-headline-md text-primary">Minimalist Haven</h2>
+</div>
+<span class="material-symbols-outlined text-primary">bookmark_border</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span> Portland, OR
+                        </p>
+<div class="flex justify-between items-end border-t border-primary/10 pt-4">
+<p class="font-title-lg text-title-lg text-primary">$1,850,000</p>
+<button class="bg-primary text-on-primary font-body-md text-body-md px-6 py-2 rounded-DEFAULT hover:opacity-90 transition-opacity">View</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-gutter">
+<!-- Property Details Section -->
+<section class="mb-margin-desktop">
+<div class="flex justify-between items-end mb-6">
+<h3 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary">Curated Listings</h3>
+<a class="font-label-caps text-label-caps text-secondary hover:opacity-80 transition-opacity flex items-center gap-1" href="#">See All <span class="material-symbols-outlined text-[14px]">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Sky View Penthouse -->
+<div class="glass-panel rounded-xl overflow-hidden group">
+<div class="h-64 overflow-hidden relative">
+<img alt="Sky View Penthouse" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNIikNS4161dJwmm2_CfyZSwAV_VDLq7bwDs_DO080aLoqJcFLrcd0HzkTWYpfE11clIxYoHS-sdy7IaUNyLZ8y0tsvkrgt-SsmFDpRGThubifEWCMEQHpzZcdlzCYAgk0VVvpeVbNet_RKXsIF4FApaLQvLec2z5XuDxOCGiiGv4Zr4vpyQ8p7yPc5yRiLpmcIfbr0cWNtT1B6ntlFusiU2LpIZ6T0PwXmd9Cn4jFueWV6v2fwf1liGr2pKywTVIqf8zSbf7REkQH"/>
+</div>
+<div class="p-6">
+<h4 class="font-title-lg text-title-lg text-primary mb-1">Sky View Penthouse</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">New York, NY</p>
+<div class="flex justify-between items-center border-t border-primary/5 pt-4">
+<p class="font-data-mono text-data-mono text-primary">$2,500,000</p>
+<div class="flex gap-4 text-on-surface-variant">
+<span class="font-data-mono text-data-mono text-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 3</span>
+<span class="font-data-mono text-data-mono text-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">shower</span> 2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Green Valley Bungalow -->
+<div class="glass-panel rounded-xl overflow-hidden group">
+<div class="h-64 overflow-hidden relative">
+<img alt="Green Valley Bungalow" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnIXhTyC8WYGITyR6329Fc7JXEpyzje1DYo2OIJSowrNFTg-vw2Iu_CzhC2MFtl-92sjOIXKv8mJ2fvv8CIHQVjOpgp4Q4YhY-eJwPL_KmVvQ3ObvCN5Zty0etB06jP2PJmMLgP_IT3-AAP0PZcZnCrWLecX-2ENEhbhm529NKU8uhDFFVDqaJMOM5-wDAYdqzT1X9V7h99YW5cEJoiVfXc4acTgE0TCCMrKKvWRQMFTgGIoY2R2TSi0Sz7k7OrAz7XWjeP-E9V0bA"/>
+</div>
+<div class="p-6">
+<h4 class="font-title-lg text-title-lg text-primary mb-1">Green Valley Bungalow</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Austin, TX</p>
+<div class="flex justify-between items-center border-t border-primary/5 pt-4">
+<p class="font-data-mono text-data-mono text-primary">$1,200,000</p>
+<div class="flex gap-4 text-on-surface-variant">
+<span class="font-data-mono text-data-mono text-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 2</span>
+<span class="font-data-mono text-data-mono text-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">shower</span> 2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Downtown Studio Loft -->
+<div class="glass-panel rounded-xl overflow-hidden group md:col-span-2">
+<div class="h-64 overflow-hidden relative">
+<img alt="Downtown Studio Loft" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ujZJn2rkbacnoH-8rt3OkQqPtvd6GPTNzMA_I9CtRpZvqmmGYr5Mi6DfLKXyph6SPE8uFMVCxA1GqU0X3UOJ3wykPkFc9GfVFUd5oo0pN7UBCa8PSbKm_EigEp76jtzkHKL5cNXiqR76S6RFb5Kpx1q5obYnDajy4iaZPH1toayqUslyU69Ur07v1qcs25Iozrv26oayKXz2X33EHHtO3XfffqaA7q6sHYZ1FKsDq1ojOMROEWqAtZ6uWqZ"/>
+</div>
+<div class="p-6">
+<h4 class="font-title-lg text-title-lg text-primary mb-1">Downtown Studio Loft</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Seattle, WA</p>
+<div class="flex justify-between items-center border-t border-primary/5 pt-4">
+<p class="font-data-mono text-data-mono text-primary">$850,000</p>
+<div class="flex gap-4 text-on-surface-variant">
+<span class="font-data-mono text-data-mono text-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">bed</span> 1</span>
+<span class="font-data-mono text-data-mono text-sm flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">shower</span> 1</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="bg-surface-container-highest/70 dark:bg-surface-container-low/70 backdrop-blur-2xl fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full shadow-[0px_24px_48px_rgba(16,29,51,0.08)] flex justify-around items-center py-2 px-4 z-50 md:hidden border border-primary/10 dark:border-white/10">
+<a class="flex items-center justify-center bg-primary dark:bg-primary-fixed text-on-primary dark:text-on-primary-fixed rounded-full p-4 ring-1 ring-white/20 Active: scale-95 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home_pin</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-4 hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-4 hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+</a>
+<a class="flex items-center justify-center text-on-surface-variant dark:text-on-tertiary-fixed-variant p-4 hover:scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+</a>
+</nav>
+</body></html>
