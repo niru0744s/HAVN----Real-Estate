@@ -61,7 +61,10 @@ export default function HomeScreen() {
     <SafeAreaView className='flex-1 bg-[#fdf9f3]' edges={['top']}>
       {/* Header */}
       <View className="flex-row justify-between items-center px-6 h-20 bg-[#fdf9f3]/90 border-b border-[#00030c]/10 z-50">
-        <TouchableOpacity className="p-2 active:scale-95 duration-200">
+        <TouchableOpacity 
+          className="p-2 active:scale-95 duration-200"
+          onPress={() => router.push('/search')}
+        >
           <MaterialCommunityIcons name="magnify" size={24} color="#75777e" />
         </TouchableOpacity>
 
@@ -71,7 +74,10 @@ export default function HomeScreen() {
           </Text>
         </View>
 
-        <TouchableOpacity className="p-2 active:scale-95 duration-200">
+        <TouchableOpacity 
+          className="p-2 active:scale-95 duration-200"
+          onPress={() => router.push({ pathname: '/search', params: { openFilters: 'true' } })}
+        >
           <MaterialCommunityIcons name="tune" size={24} color="#75777e" />
         </TouchableOpacity>
       </View>
@@ -95,11 +101,12 @@ export default function HomeScreen() {
               renderItem={({ item }) => (
                 <View style={{ width: Dimensions.get('window').width, height: 500 }}>
                   <Image 
-                  source={
+                  source={{
+                    uri:
                         item.images.length>0
-                        ?{ uri: item.images?.[0] }
+                        ? item.images?.[0] 
                         : require("@/assets/images/HAVNlogo.png")
-                    } 
+                    }}
                   className="w-full h-full object-cover" />
                   <View className="absolute inset-0 bg-black/40" />
                 </View>

@@ -18,7 +18,10 @@ export default function PropertyCard({ property, onUnsave, showSave }: PropertyC
         <TouchableOpacity
             activeOpacity={0.9}
             className="bg-[#fdf9f3] rounded-xl overflow-hidden border border-[#00030c]/10 shadow-sm"
-            onPress={() => router.push(`/(root)/property/${property.id}`)}
+            onPress={() => router.push({
+                pathname: "/(root)/property/[id]",
+                params: { id: property.id }
+            })}
         >
             <View className="h-64 w-full relative">
                 <Image

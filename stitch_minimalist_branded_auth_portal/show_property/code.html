@@ -1,0 +1,305 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=EB+Garamond:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .glass-panel {
+            background: rgba(247, 243, 238, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(16, 29, 51, 0.1);
+        }
+        .soft-glow {
+            shadow: 0px 24px 48px rgba(16, 29, 51, 0.08);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f7f3ee",
+                        "secondary-fixed-dim": "#e6c09b",
+                        "on-surface-variant": "#45474d",
+                        "surface-bright": "#fdf9f3",
+                        "inverse-primary": "#bac7e4",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "outline-variant": "#c5c6cd",
+                        "primary-container": "#101d33",
+                        "primary": "#00030c",
+                        "surface": "#fdf9f3",
+                        "on-primary-fixed-variant": "#3b475f",
+                        "inverse-on-surface": "#f4f0eb",
+                        "on-primary-container": "#7985a0",
+                        "surface-container-highest": "#e6e2dd",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "on-secondary-container": "#795b3d",
+                        "on-secondary-fixed-variant": "#5c4125",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#ddd9d4",
+                        "surface-container": "#f1ede8",
+                        "tertiary-fixed": "#e4e2dd",
+                        "outline": "#75777e",
+                        "tertiary-container": "#1d1d1a",
+                        "on-surface": "#1c1c19",
+                        "secondary-container": "#fed6b0",
+                        "background": "#fdf9f3",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#d7e3ff",
+                        "surface-container-high": "#ece8e2",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1c1c19",
+                        "tertiary": "#020302",
+                        "on-tertiary-container": "#858581",
+                        "secondary-fixed": "#ffdcbc",
+                        "primary-fixed-dim": "#bac7e4",
+                        "surface-tint": "#525f78",
+                        "secondary": "#76593b",
+                        "on-secondary-fixed": "#2b1702",
+                        "on-primary-fixed": "#0e1b31",
+                        "surface-variant": "#e6e2dd",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "inverse-surface": "#31302d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "unit": "8px",
+                        "margin-mobile": "24px",
+                        "gutter": "32px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Manrope"],
+                        "display-lg": ["EB Garamond"],
+                        "body-md": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "display-lg-mobile": ["EB Garamond"],
+                        "data-mono": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "headline-md": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-primary/10 transition-all duration-300 h-20 flex items-center justify-between px-margin-mobile md:px-margin-desktop">
+<button class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="absolute left-1/2 -translate-x-1/2 text-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqfGzWXIeljyt3i3WP0dIh-UK3HrcycJ5tcOEuxJ_eJdL6no3qnJKwu_xhpKn6L34f33WiSw9sx0_328XHd7QanLI15lgXriGTSpeNPNvbvv6eRxTQ6CjOeSHUvkxwCTzAhE4wyJg36IL7jN8Z4-3MCjQuAuA2Th9COgjngva6nH4gqEdCctS6zkimwoK4HFyNfzDwKXbJI8XOXuDGbVNDKpEdn2aPwQaYmcOkHjU6L4qtxLrE5oMNXgNMT-V3yJbHzgSTn0HTWAKlrxk" alt="HAVN Logo" class="w-auto object-contain mx-auto h-12"></div>
+<div class="flex gap-4">
+<button class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+<button class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-primary/5 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary">share</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-32">
+<!-- Hero Gallery -->
+<section class="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+<div class="flex h-full overflow-x-auto snap-x snap-mandatory no-scrollbar" id="hero-slider">
+<div class="min-w-full h-full snap-center bg-cover bg-center" style="background-image: url(&quot;https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg&quot;);"></div>
+<div class="min-w-full h-full snap-center bg-cover bg-center" style="background-image: url(&quot;https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg&quot;);"></div>
+<div class="min-w-full h-full snap-center bg-cover bg-center" style="background-image: url(&quot;https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg&quot;);"></div>
+</div>
+<!-- Gallery Navigation Overlay -->
+<div class="absolute bottom-12 right-margin-mobile md:right-margin-desktop flex gap-2">
+<div class="glass-panel px-4 py-2 rounded-full flex items-center gap-4 text-primary transition-all duration-1000 opacity-100 translate-y-0">
+<span class="font-label-caps text-label-caps" id="slide-counter">01 / 03</span>
+<div class="w-px h-4 bg-primary/10"></div>
+<div class="flex gap-2">
+<button class="material-symbols-outlined text-[20px] hover:scale-110 active:scale-90 transition-transform" onclick="document.getElementById('hero-slider').scrollBy({left: -window.innerWidth, behavior: 'smooth'})">chevron_left</button>
+<button class="material-symbols-outlined text-[20px] hover:scale-110 active:scale-90 transition-transform" onclick="document.getElementById('hero-slider').scrollBy({left: window.innerWidth, behavior: 'smooth'})">chevron_right</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Container -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop -mt-16 relative z-10">
+<!-- Property Primary Card -->
+<div class="glass-panel p-8 md:p-12 rounded-xl shadow-[0px_24px_48px_rgba(16,29,51,0.08)] transition-all duration-1000 opacity-100 translate-y-0">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-primary/5 pb-8 mb-8">
+<div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2">Modern Luxury Villa</h1>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<p class="font-body-md">14 Palm Grove Lane, Mumbai</p>
+</div>
+</div>
+<div class="text-left md:text-right">
+<p class="font-label-caps text-label-caps text-secondary mb-1">LISTING PRICE</p>
+<p class="font-display-lg text-headline-md md:text-display-lg text-primary">$12,500,000</p>
+</div>
+</div>
+<!-- Bento Grid Specs -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+<div class="bg-surface-container/50 border border-primary/5 p-6 rounded-lg flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">bed</span>
+<p class="font-title-lg text-title-lg text-primary">4</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Bedrooms</p>
+</div>
+<div class="bg-surface-container/50 border border-primary/5 p-6 rounded-lg flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">bathtub</span>
+<p class="font-title-lg text-title-lg text-primary">3</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Bathrooms</p>
+</div>
+<div class="bg-surface-container/50 border border-primary/5 p-6 rounded-lg flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">straighten</span>
+<p class="font-title-lg text-title-lg text-primary">3,200</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Sq Ft</p>
+</div>
+<div class="bg-surface-container/50 border border-primary/5 p-6 rounded-lg flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">pool</span>
+<p class="font-title-lg text-title-lg text-primary">Private</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Pool Access</p>
+</div>
+</div>
+<!-- Description & Details -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<div class="lg:col-span-2">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">About this residence</h2>
+<p class="font-body-md text-on-surface-variant leading-relaxed mb-8">
+                            A stunning modern villa with open floor plan, floor-to-ceiling windows, and a private pool. Perfect for families looking for premium living. This architectural masterpiece blends industrial precision with organic warmth, offering a sanctuary of light and space. 
+                            <br><br>
+                            The interior features Italian marble flooring, bespoke cabinetry, and a smart-home system that manages everything from climate to security with a single touch.
+                        </p>
+<div class="space-y-6">
+<h3 class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 text-on-surface-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Chef's Kitchen with Miele Appliances</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Wine Cellar (500 Bottle Capacity)</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Home Cinema &amp; Sound System</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
+<span class="">Rooftop Zen Garden</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Info / Agent -->
+<div class="space-y-8">
+<div class="bg-surface-container-low border border-primary/5 p-8 rounded-xl">
+<h3 class="font-headline-md text-title-lg text-primary mb-6">Listing Agent</h3>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a premium real estate agent in a high-end luxury setting. The lighting is soft and flattering, reflecting the sophisticated light-mode aesthetic of the sanctuary brand. He is wearing a dark navy tailored suit. The background is a blurred modern architectural space with glass and light-colored stone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxfEfxiiQn5c_AFrwEAnNWzdWnRlzmbzsZFxt6iW4oyX0NIBBHq_dX835xZ9SLylNk2gguOYzy_0xff3Odmj2KHkGlBT3UN6_BBUhv8ajoJKRCXbJLiCtgapcQ0ynpHu-Si2cxZtaQQcErLD4GzlV9cVdtDWAw8QEbwNu-keY50duVYWAxeDXPmiEv7a8iSPFAEBmM81AJFOADu3yBBomWMQQDdQE3BW-lOxfQBgs5rwyYS0y_ZK1MccpiazKoPrwrK3P-qa4ce3Bo">
+</div>
+<div>
+<p class="font-title-lg text-primary">Vikram Singhania</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Senior Partner</p>
+</div>
+</div>
+<button class="w-full py-4 px-6 border border-primary text-primary font-label-caps text-label-caps rounded-full hover:bg-primary hover:text-white transition-all duration-300 mb-3">
+                                CONTACT AGENT
+                            </button>
+<button class="w-full py-4 px-6 bg-surface-container-highest/50 text-on-surface font-label-caps text-label-caps rounded-full hover:bg-surface-container-highest transition-all duration-300">
+                                VIEW BROCHURE
+                            </button>
+</div>
+<!-- Map Preview -->
+<div class="rounded-xl overflow-hidden h-64 relative grayscale hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover" data-alt="A sophisticated, minimalist map view of a high-end residential neighborhood in Mumbai. The map uses a clean, light color scheme with soft creams and navy accents to match the sanctuary brand identity. Streets are thin and elegant, and the location is marked with a subtle gold pin." data-location="Mumbai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTxa2NSi8kaCEhACIvEr9zUDCCMJhpOOlq1j0XURIGTp0UKsgs7sVMd4WZbldsNPIa2NN0buWWA1Kf8prEFI-PuVMaOAPCIa_amY90azIwgym38CO9gJFNoHqFeEPRTg2tUqeI8YZL7LcP1JxYZJ4cNzdDmdF864H7lVxG6UFbp_ypMvFWglIu7f5o9A8bXeS4YqBTfvazek2rJFffquPyBTSnF30MhkwxNQFiFJd9bxvrSbBLc5bmpCsmhN3Hs-P3iG6PrFqrr7Zk">
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center pointer-events-none">
+<div class="glass-panel px-4 py-2 rounded-full text-primary font-label-caps text-[10px] tracking-widest transition-all duration-1000 opacity-100 translate-y-0">
+                                    LOCATION: MUMBAI
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Action Footer -->
+<footer class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[calc(100%-48px)] max-w-md z-50">
+<div class="glass-panel p-3 rounded-full flex items-center justify-between shadow-[0px_24px_48px_rgba(16,29,51,0.15)] transition-all duration-1000 opacity-100 translate-y-0">
+<div class="pl-6">
+<p class="font-label-caps text-[10px] text-on-surface-variant mb-0.5">MONTHLY ESTIMATE</p>
+<p class="font-title-lg text-primary text-[18px]">$52,400/mo</p>
+</div>
+<button class="bg-primary text-white h-14 px-10 rounded-full font-label-caps text-label-caps hover:scale-[1.02] active:scale-95 transition-all shadow-lg">
+                BOOK CONSULTATION
+            </button>
+</div>
+</footer>
+<!-- Bottom Navigation (Mobile Only Shell Requirement) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low border-t border-primary/5 px-6 py-4 hidden">
+<!-- This is traditionally hidden in detail screens per the "Destination" Rule / Task-Focused Rule -->
+</nav>
+<script>
+        // Micro-interaction for gallery slider counter
+        const slider = document.getElementById('hero-slider');
+        const counter = document.getElementById('slide-counter');
+        
+        slider.addEventListener('scroll', () => {
+            const slideIndex = Math.round(slider.scrollLeft / window.innerWidth) + 1;
+            counter.textContent = `0${slideIndex} / 03`;
+        });
+
+        // Ambient reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-8');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass-panel').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-8');
+            observer.observe(el);
+        });
+    </script>
+
+
+</body></html>
