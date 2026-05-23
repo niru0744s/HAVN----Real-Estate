@@ -8,7 +8,7 @@ import { useAuth } from '@clerk/expo';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
     ActivityIndicator,
     Alert,
@@ -16,6 +16,8 @@ import {
     FlatList,
     Image,
     Linking,
+    Modal,
+    SafeAreaView,
     ScrollView,
     Share,
     Text,
@@ -25,7 +27,7 @@ import {
 import { WebView } from 'react-native-webview';
 
 const ADMIN_PHONE = "919999999999";
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const triggerHaptic = () => {
   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
@@ -41,6 +43,9 @@ export default function PropertyDetails() {
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [expanded, setExpanded] = useState(false);
+  const [viewerVisible, setViewerVisible] = useState(false);
+  const [viewerIndex, setViewerIndex] = useState(0);
+  const viewerRef = useRef<FlatList>(null);
   const authSupabase = useSupabase();
 
   const { isSaved, toggleSave, saveLoading } = useSavedProperty(id ?? "");
@@ -165,7 +170,7 @@ export default function PropertyDetails() {
   return (
     <View className="flex-1 bg-[#fdf9f3]">
       {/* Absolute Pinned Header Bar */}
-      <View className="absolute top-12 left-0 right-0 z-50 flex-row justify-between items-center px-6">
+      <View className="absolute top-0 left-0 right-0 z-50 flex-row justify-between items-center px-6 mt-14">
         <TouchableOpacity
           onPress={() => {
             triggerHaptic();
@@ -226,11 +231,21 @@ export default function PropertyDetails() {
             renderItem={({ item }) => (
               <View style={{ width, height: 400 }}>
                 {item ? (
-                  <Image
-                    source={{ uri: item }}
+                  <TouchableOpacity
+                    activeOpacity={0.95}
+                    onPress={() => {
+                      triggerHaptic();
+                      setViewerIndex(activeIndex);
+                      setViewerVisible(true);
+                    }}
                     className="w-full h-full"
-                    resizeMode="cover"
-                  />
+                  >
+                    <Image
+                      source={{ uri: item }}
+                      className="w-full h-full"
+                      resizeMode="cover"
+                    />
+                  </TouchableOpacity>
                 ) : (
                   <View className="w-full h-full bg-[#f1ede8] items-center justify-center">
                     <Image
@@ -246,7 +261,7 @@ export default function PropertyDetails() {
           />
 
           {/* Slide Counter Overlay */}
-          <View className="absolute bottom-18 right-6 bg-[#fdf9f3]/85 border border-[#00030c]/10 px-4 py-2 rounded-full shadow-sm">
+          <View className="absolute bottom-18 right-6 bg-[#fdf9f3]/85 border border-[#00030c]/10 px-4 mt-3 py-2 rounded-full shadow-sm">
             <Text className="text-[11px] font-bold text-[#00030c] tracking-widest uppercase">
               {String(activeIndex + 1).padStart(2, '0')} / {String(Math.max(1, property.images?.length || 1)).padStart(2, '0')}
             </Text>
@@ -438,6 +453,56 @@ export default function PropertyDetails() {
             </TouchableOpacity>
           </View>
 
+          {/* Administrative Control Panel */}
+          {isAdmin && (
+            <View className="bg-[#ba1a1a]/5 border border-[#ba1a1a]/15 p-6 rounded-3xl mb-4">
+              <Text className="text-[12px] font-bold text-[#ba1a1a] tracking-[0.08em] uppercase mb-4">
+                Administrative Control Panel
+              </Text>
+              
+              <View className="flex-row gap-3">
+                <TouchableOpacity
+                  onPress={() => {
+                    triggerHaptic();
+                    handleMarkSold();
+                  }}
+                  disabled={property.is_sold}
+                  activeOpacity={0.8}
+                  className={`flex-1 py-4 rounded-full items-center justify-center flex-row gap-2 border transition-all ${
+                    property.is_sold
+                      ? 'bg-transparent border-[#00030c]/10 opacity-50'
+                      : 'bg-[#00030c] border-[#00030c] active:scale-95'
+                  }`}
+                >
+                  <MaterialCommunityIcons 
+                    name="checkbox-marked-circle-outline" 
+                    size={16} 
+                    color={property.is_sold ? "#00030c" : "#ffffff"} 
+                  />
+                  <Text className={`text-[11px] font-bold tracking-widest uppercase ${
+                    property.is_sold ? 'text-[#00030c]' : 'text-white'
+                  }`}>
+                    {property.is_sold ? "Sold" : "Mark Sold"}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {
+                    triggerHaptic();
+                    handleDelete();
+                  }}
+                  activeOpacity={0.8}
+                  className="flex-1 py-4 bg-transparent border border-[#ba1a1a] rounded-full items-center justify-center flex-row gap-2 active:scale-95"
+                >
+                  <MaterialCommunityIcons name="trash-can-outline" size={16} color="#ba1a1a" />
+                  <Text className="text-[#ba1a1a] text-[11px] font-bold tracking-widest uppercase">
+                    Delete
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+
         </View>
       </ScrollView>
 
@@ -461,6 +526,129 @@ export default function PropertyDetails() {
           </Text>
         </TouchableOpacity>
       </View>
+
+      {/* Fullscreen Image Viewer Modal */}
+      <Modal
+        visible={viewerVisible}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setViewerVisible(false)}
+        onShow={() => {
+          if (property?.images && property.images.length > viewerIndex) {
+            setTimeout(() => {
+              try {
+                viewerRef.current?.scrollToIndex({ index: viewerIndex, animated: false });
+              } catch (err) {
+                console.warn("FlatList scrollToIndex failed:", err);
+              }
+            }, 100);
+          }
+        }}
+      >
+        <SafeAreaView className="flex-1 bg-black/95 justify-between">
+          {/* Header */}
+          <View className="flex-row justify-between items-center px-6 py-4">
+            <TouchableOpacity
+              onPress={() => {
+                triggerHaptic();
+                setViewerVisible(false);
+              }}
+              activeOpacity={0.8}
+              className="w-10 h-10 rounded-full bg-white/10 items-center justify-center"
+            >
+              <MaterialCommunityIcons name="close" size={24} color="#ffffff" />
+            </TouchableOpacity>
+
+            <Text className="text-white font-bold text-[14px] tracking-widest uppercase">
+              {String(viewerIndex + 1).padStart(2, '0')} / {String(Math.max(1, property.images?.length || 1)).padStart(2, '0')}
+            </Text>
+
+            <TouchableOpacity
+              onPress={handleShare}
+              activeOpacity={0.8}
+              className="w-10 h-10 rounded-full bg-white/10 items-center justify-center"
+            >
+              <MaterialCommunityIcons name="share-variant" size={20} color="#ffffff" />
+            </TouchableOpacity>
+          </View>
+
+          {/* Main Fullscreen Swipeable Gallery */}
+          <View className="flex-1 justify-center items-center">
+            <FlatList
+              ref={viewerRef}
+              data={property.images && property.images.length > 0 ? property.images : []}
+              keyExtractor={(item, index) => index.toString()}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              getItemLayout={(data, index) => ({
+                length: width,
+                offset: width * index,
+                index,
+              })}
+              onMomentumScrollEnd={(event) => {
+                const index = Math.round(event.nativeEvent.contentOffset.x / width);
+                setViewerIndex(index);
+              }}
+              renderItem={({ item }) => (
+                <View style={{ width, height: height * 0.7, justifyContent: 'center', alignItems: 'center' }}>
+                  <ScrollView
+                    maximumZoomScale={4}
+                    minimumZoomScale={1}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ width, height: height * 0.7, justifyContent: 'center', alignItems: 'center' }}
+                  >
+                    {item ? (
+                      <Image
+                        source={{ uri: item }}
+                        style={{ width: width, height: height * 0.65 }}
+                        resizeMode="contain"
+                      />
+                    ) : null}
+                  </ScrollView>
+                </View>
+              )}
+            />
+          </View>
+
+          {/* Bottom Thumbnail Strip */}
+          {property.images && property.images.length > 1 && (
+            <View className="py-6 bg-black/40 border-t border-white/5">
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ paddingHorizontal: 24, gap: 10 }}
+              >
+                {property.images.map((img, idx) => (
+                  <TouchableOpacity
+                    key={idx}
+                    activeOpacity={0.8}
+                    onPress={() => {
+                      triggerHaptic();
+                      setViewerIndex(idx);
+                      try {
+                        viewerRef.current?.scrollToIndex({ index: idx, animated: true });
+                      } catch (err) {
+                        console.warn("Thumbnail scrollToIndex failed:", err);
+                      }
+                    }}
+                    className={`w-16 h-16 rounded-xl overflow-hidden border-2 ${
+                      viewerIndex === idx ? 'border-[#76593b]' : 'border-transparent opacity-50'
+                    }`}
+                  >
+                    <Image
+                      source={{ uri: img }}
+                      className="w-full h-full"
+                      resizeMode="cover"
+                    />
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          )}
+        </SafeAreaView>
+      </Modal>
     </View>
   );
 }

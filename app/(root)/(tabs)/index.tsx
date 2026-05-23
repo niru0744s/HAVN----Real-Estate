@@ -1,13 +1,34 @@
 import PropertyCard from '@/app/components/propertyCard';
+import { useSavedProperty } from '@/hooks/useSavedProperty';
 import { supabase } from '@/lib/supabase';
 import { formatPrice } from '@/lib/utils';
 import { Property } from '@/types';
 import { useUser } from '@clerk/expo';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useRef, useState } from 'react';
 import { ActivityIndicator, Dimensions, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+function FeaturedBookmarkButton({ propertyId }: { propertyId: string }) {
+  const { isSaved, toggleSave, saveLoading } = useSavedProperty(propertyId);
+
+  const handlePress = async () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+    await toggleSave();
+  };
+
+  return (
+    <TouchableOpacity onPress={handlePress} disabled={saveLoading} className="active:scale-95 duration-200">
+      <MaterialCommunityIcons 
+        name={isSaved ? "bookmark" : "bookmark-outline"} 
+        size={24} 
+        color={isSaved ? "#76593b" : "#00030c"} 
+      />
+    </TouchableOpacity>
+  );
+}
 
 export default function HomeScreen() {
   const { user } = useUser();
@@ -17,11 +38,6 @@ export default function HomeScreen() {
   const [recommended, setRecommended] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [featuredSavedState, setFeaturedSavedState] = useState<Record<string, boolean>>({});
-
-  const toggleFeaturedSaved = (id: string) => {
-    setFeaturedSavedState(prev => ({ ...prev, [id]: !prev[id] }));
-  };
 
   const viewabilityConfig = useRef({ itemVisiblePercentThreshold: 50 }).current;
 
@@ -125,13 +141,7 @@ export default function HomeScreen() {
                       {featured[activeIndex].title}
                     </Text>
                   </View>
-                  <TouchableOpacity onPress={() => toggleFeaturedSaved(featured[activeIndex].id)}>
-                    <MaterialCommunityIcons 
-                      name={featuredSavedState[featured[activeIndex].id] ? "bookmark" : "bookmark-outline"} 
-                      size={24} 
-                      color={featuredSavedState[featured[activeIndex].id] ? "#76593b" : "#00030c"} 
-                    />
-                  </TouchableOpacity>
+                  <FeaturedBookmarkButton propertyId={featured[activeIndex].id} />
                 </View>
                 <View className="flex-row items-center mb-4">
                   <MaterialCommunityIcons name="map-marker-outline" size={16} color="#45474d" />

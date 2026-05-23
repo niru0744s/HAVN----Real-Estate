@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(253, 249, 243, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 3, 12, 0.1);
+        }
+        .inner-glow:active {
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+            transform: scale(0.98);
+            transition: all 0.2s ease;
+        }
+        body {
+            background-color: #fdf9f3;
+            background-image: radial-gradient(circle at 10% 20%, rgba(230, 192, 155, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 90% 80%, rgba(121, 133, 160, 0.05) 0%, transparent 50%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e6e2dd",
+                        "on-tertiary-container": "#858581",
+                        "error-container": "#ffdad6",
+                        "primary": "#00030c",
+                        "outline-variant": "#c5c6cd",
+                        "on-background": "#1c1c19",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "secondary-fixed-dim": "#e6c09b",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "secondary": "#76593b",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#2b1702",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#bac7e4",
+                        "surface-container": "#f1ede8",
+                        "surface-container-low": "#f7f3ee",
+                        "secondary-fixed": "#ffdcbc",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "surface-bright": "#fdf9f3",
+                        "inverse-surface": "#31302d",
+                        "surface-container-high": "#ece8e2",
+                        "secondary-container": "#fed6b0",
+                        "on-primary-fixed": "#0e1b31",
+                        "tertiary-container": "#1d1d1a",
+                        "on-primary-container": "#7985a0",
+                        "surface": "#fdf9f3",
+                        "inverse-primary": "#bac7e4",
+                        "on-surface-variant": "#45474d",
+                        "surface-tint": "#525f78",
+                        "surface-dim": "#ddd9d4",
+                        "on-secondary-fixed-variant": "#5c4125",
+                        "on-error": "#ffffff",
+                        "primary-container": "#101d33",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#3b475f",
+                        "tertiary": "#020302",
+                        "on-surface": "#1c1c19",
+                        "primary-fixed": "#d7e3ff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#795b3d",
+                        "surface-container-highest": "#e6e2dd",
+                        "background": "#fdf9f3",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#e4e2dd",
+                        "outline": "#75777e",
+                        "inverse-on-surface": "#f4f0eb"
+                    },
+                    "spacing": {
+                        "gutter": "32px",
+                        "unit": "8px",
+                        "container-max": "1280px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["EB Garamond"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "title-lg": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-on-background font-body-md">
+<!-- TopAppBar -->
+<header class="bg-surface/70 backdrop-blur-[30px] text-primary docked full-width top-0 sticky z-50 border-b border-primary/10 shadow-[0px_24px_48px_rgba(16,29,51,0.08)]">
+<div class="flex justify-between items-center w-full px-margin-mobile h-16 max-w-container-max mx-auto">
+<button class="material-symbols-outlined p-2 hover:bg-primary/5 transition-colors rounded-full" data-icon="menu">menu</button>
+<h1 class="font-display-lg text-[24px] tracking-tighter text-primary">HAVN</h1>
+<button class="material-symbols-outlined p-2 hover:bg-primary/5 transition-colors rounded-full" data-icon="notifications">notifications</button>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-32 py-6">
+<!-- Account Headline -->
+<section class="">
+<h2 class="font-display-lg text-[36px] md:text-display-lg text-primary text-center md:text-left">Account</h2>
+</section>
+<!-- Profile Hero -->
+<section class="flex flex-col items-center md:items-start md:flex-row gap-8">
+<div class="relative">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-primary/5 shadow-lg">
+<img alt="Alexander Vance" class="w-full h-full object-cover" data-alt="A professional and sophisticated portrait of a man with a refined appearance, set against a soft-focus background of a modern, minimalist architectural interior. The lighting is warm and natural, reflecting a high-end editorial aesthetic with a palette of soft creams, linen textures, and deep navy accents. The mood is calm, trustworthy, and premium, consistent with a luxury real estate atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdcaRmGhDvn88MOtFq1zAgZWFuDL5MJx20EgEwjo9UOAPgLA3pno81zejyMuImPShcltQ4_pegll4zqQh-NvRuyhmfGrpc8Tn_tvp4mrExY1quOFy-wrurv0GWpuIBF0SmyJEigwJ7zaTKVOchNOErn12IzagEINN7XiZKs8jOLK5D_4EqlAccfDhuAdFofRPl84zwxGaMSbQIZpWYGvqa07KvntImsjUSBipe5vHoeJgSMhBOrYwl98b9jdvH7-hBaXgJjDT27Q9K"/>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+</div>
+</div>
+<div class="text-center md:text-left flex flex-col justify-center">
+<h3 class="font-display-lg text-headline-md text-primary mb-2">Alexander Vance</h3>
+<div class="flex items-center justify-center md:justify-start gap-2">
+<span class="bg-secondary/10 text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-[10px] uppercase tracking-widest">Member since 2024</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-on-surface-variant">Verified Resident</span>
+</div>
+</div>
+</section>
+<!-- Quick Stats Bento Row -->
+<section class="grid md:grid-cols-3 gap-6 mb-16">
+<div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center transition-all hover:shadow-xl hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]" data-icon="favorite">favorite</span>
+<span class="font-display-lg text-headline-md text-primary">3</span>
+<span class="font-label-caps text-on-surface-variant uppercase">Saved Sanctuaries</span>
+</div>
+<div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center transition-all hover:shadow-xl hover:-translate-y-1">
+<span class="material-symbols-outlined text-primary mb-4 text-[32px]" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-display-lg text-headline-md text-primary">2</span>
+<span class="font-label-caps text-on-surface-variant uppercase">Inquiries</span>
+</div>
+<div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center transition-all hover:shadow-xl hover:-translate-y-1 border-secondary/20 bg-secondary/5">
+<span class="material-symbols-outlined text-secondary mb-4 text-[32px]" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-display-lg text-headline-md text-secondary">Premium</span>
+<span class="font-label-caps text-on-surface-variant uppercase">Membership Status</span>
+</div>
+</section>
+<!-- Settings List -->
+<div class="">
+<!-- Account Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<h4 class="font-label-caps text-[14px] text-on-surface-variant tracking-[0.2em] uppercase">Account</h4>
+<div class="h-px flex-grow bg-primary/5"></div>
+</div>
+<div class="glass-panel rounded-2xl overflow-hidden">
+<a class="flex items-center justify-between p-6 hover:bg-primary/5 transition-colors border-b border-primary/5 inner-glow" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+<span class="font-body-md text-on-surface">Personal Information</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-6 hover:bg-primary/5 transition-colors border-b border-primary/5 inner-glow" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="shield">shield</span>
+<span class="font-body-md text-on-surface">Security</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-6 hover:bg-primary/5 transition-colors inner-glow" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="font-body-md text-on-surface">Notifications</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[12px] font-label-caps text-secondary uppercase">All Enabled</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Preferences Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<h4 class="font-label-caps text-[14px] text-on-surface-variant tracking-[0.2em] uppercase">Preferences</h4>
+<div class="h-px flex-grow bg-primary/5"></div>
+</div>
+<div class="glass-panel rounded-2xl overflow-hidden">
+<div class="p-6 border-b border-primary/5">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="tune">tune</span>
+<span class="font-body-md text-on-surface">Search Filters</span>
+</div>
+<div class="flex flex-wrap gap-2 ml-10">
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-[12px] font-body-sm">4+ Bedrooms</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-[12px] font-body-sm">Sea Facing</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full text-[12px] font-body-sm">Private Pool</span>
+</div>
+</div>
+<div class="p-6 border-b border-primary/5">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="location_on">location_on</span>
+<span class="font-body-md text-on-surface">Desired Locations</span>
+</div>
+<div class="flex flex-wrap gap-2 ml-10">
+<span class="bg-secondary/10 text-on-secondary-container px-3 py-1 rounded-full text-[12px] font-label-caps">MUMBAI</span>
+<span class="bg-secondary/10 text-on-secondary-container px-3 py-1 rounded-full text-[12px] font-label-caps">WORLI</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="architecture">architecture</span>
+<span class="font-body-md text-on-surface">Architectural Style</span>
+</div>
+<div class="flex flex-wrap gap-2 ml-10">
+<span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-[12px] font-body-md border border-primary/10">Modern</span>
+<span class="bg-primary/5 text-primary px-3 py-1 rounded-full text-[12px] font-body-md border border-primary/10">Minimalist</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Support Section -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<h4 class="font-label-caps text-[14px] text-on-surface-variant tracking-[0.2em] uppercase">Support</h4>
+<div class="h-px flex-grow bg-primary/5"></div>
+</div>
+<div class="glass-panel rounded-2xl overflow-hidden">
+<a class="flex items-center justify-between p-6 hover:bg-primary/5 transition-colors border-b border-primary/5 inner-glow" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="support_agent">support_agent</span>
+<span class="font-body-md text-on-surface">Concierge</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-6 hover:bg-primary/5 transition-colors border-b border-primary/5 inner-glow" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help_center">help_center</span>
+<span class="font-body-md text-on-surface">Help Center</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-6 hover:bg-primary/5 transition-colors inner-glow" href="#">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="gavel">gavel</span>
+<span class="font-body-md text-on-surface">Legal</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</section>
+</div>
+<!-- Footer / Log Out -->
+<footer class="mt-20 text-center">
+<button class="px-12 py-4 rounded-full border border-primary/10 text-on-surface-variant hover:text-error hover:border-error/20 hover:bg-error/5 transition-all font-label-caps uppercase tracking-widest text-[13px] inner-glow">
+                Log Out
+            </button>
+<p class="mt-8 text-[11px] font-body-sm text-on-tertiary-container">HAVN Realty • Version 2.4.1</p>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-margin-mobile py-3 pb-safe bg-surface/70 backdrop-blur-[30px] border-t border-primary/10 shadow-[0px_-10px_30px_rgba(16,29,51,0.04)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary/10 rounded-full transition-all px-4 py-1.5" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-caps text-[10px] mt-1">Discovery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary/10 rounded-full transition-all px-4 py-1.5" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="font-label-caps text-[10px] mt-1">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-secondary/10 rounded-full transition-all px-4 py-1.5" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-label-caps text-[10px] mt-1">Inquiry</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-background rounded-full px-4 py-1.5 shadow-inner" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple hover micro-interaction for glass panels
+        document.querySelectorAll('.glass-panel').forEach(panel => {
+            panel.addEventListener('mouseenter', () => {
+                panel.style.boxShadow = '0px 24px 48px rgba(16, 29, 51, 0.12)';
+            });
+            panel.addEventListener('mouseleave', () => {
+                panel.style.boxShadow = '';
+            });
+        });
+    </script>
+</body></html>

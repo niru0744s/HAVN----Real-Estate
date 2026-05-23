@@ -1,8 +1,10 @@
+import { useSavedProperty } from '@/hooks/useSavedProperty';
 import { formatPrice } from '@/lib/utils';
 import { Property } from '@/types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { router } from 'expo-router';
-import React, { useState } from 'react';
+import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 interface PropertyCardProps {
@@ -12,7 +14,7 @@ interface PropertyCardProps {
 }
 
 export default function PropertyCard({ property, onUnsave, showSave }: PropertyCardProps) {
-    const [isSaved, setIsSaved] = useState(false);
+    const { isSaved, saveLoading, toggleSave } = useSavedProperty(property.id, onUnsave);
 
     return (
         <TouchableOpacity
@@ -34,8 +36,12 @@ export default function PropertyCard({ property, onUnsave, showSave }: PropertyC
                     resizeMode="cover"
                 />
                 <TouchableOpacity 
-                    className="absolute top-4 right-4 bg-white/70 p-2 rounded-full"
-                    onPress={() => setIsSaved(!isSaved)}
+                    className="absolute top-4 right-4 bg-white/70 p-2 rounded-full active:scale-95 duration-200"
+                    onPress={async () => {
+                        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+                        await toggleSave();
+                    }}
+                    disabled={saveLoading}
                 >
                     <MaterialCommunityIcons 
                         name={isSaved ? "bookmark" : "bookmark-outline"} 
