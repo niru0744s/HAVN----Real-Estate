@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    .glass-panel {
+      background: rgba(253, 249, 243, 0.7);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(0, 3, 12, 0.1);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .step-transition {
+      transition: opacity 0.4s ease-in-out, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: rgba(0, 3, 12, 0.4) !important;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(118, 89, 59, 0.2);
+      border-radius: 10px;
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-error": "#ffffff",
+                  "primary-fixed": "#d7e3ff",
+                  "tertiary": "#020302",
+                  "secondary": "#76593b",
+                  "on-surface": "#1c1c19",
+                  "secondary-fixed": "#ffdcbc",
+                  "background": "#fdf9f3",
+                  "on-surface-variant": "#45474d",
+                  "surface-container-high": "#ece8e2",
+                  "inverse-on-surface": "#f4f0eb",
+                  "secondary-container": "#fed6b0",
+                  "primary-fixed-dim": "#bac7e4",
+                  "error": "#ba1a1a",
+                  "on-primary": "#ffffff",
+                  "surface-container-highest": "#e6e2dd",
+                  "surface-container-low": "#f7f3ee",
+                  "on-tertiary-container": "#858581",
+                  "on-tertiary": "#ffffff",
+                  "on-primary-fixed-variant": "#3b475f",
+                  "on-secondary-fixed-variant": "#5c4125",
+                  "on-primary-container": "#7985a0",
+                  "on-background": "#1c1c19",
+                  "secondary-fixed-dim": "#e6c09b",
+                  "on-tertiary-fixed": "#1b1c19",
+                  "surface-tint": "#525f78",
+                  "on-secondary-container": "#795b3d",
+                  "surface-bright": "#fdf9f3",
+                  "on-error-container": "#93000a",
+                  "on-secondary-fixed": "#2b1702",
+                  "on-secondary": "#ffffff",
+                  "surface-variant": "#e6e2dd",
+                  "surface": "#fdf9f3",
+                  "outline-variant": "#c5c6cd",
+                  "on-tertiary-fixed-variant": "#474744",
+                  "surface-dim": "#ddd9d4",
+                  "surface-container": "#f1ede8",
+                  "on-primary-fixed": "#0e1b31",
+                  "primary-container": "#101d33",
+                  "primary": "#00030c",
+                  "error-container": "#ffdad6",
+                  "inverse-surface": "#31302d",
+                  "tertiary-fixed-dim": "#c8c6c2",
+                  "surface-container-lowest": "#ffffff",
+                  "tertiary-fixed": "#e4e2dd",
+                  "outline": "#75777e",
+                  "tertiary-container": "#1d1d1a",
+                  "inverse-primary": "#bac7e4"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "spacing": {
+                  "margin-mobile": "24px",
+                  "margin-desktop": "64px",
+                  "unit": "8px",
+                  "gutter": "32px",
+                  "container-max": "1280px"
+          },
+          "fontFamily": {
+                  "label-caps": ["Manrope"],
+                  "headline-md": ["EB Garamond"],
+                  "data-mono": ["Manrope"],
+                  "display-lg-mobile": ["EB Garamond"],
+                  "title-lg": ["Manrope"],
+                  "body-md": ["Manrope"],
+                  "display-lg": ["EB Garamond"],
+                  "body-sm": ["Manrope"]
+          },
+          "fontSize": {
+                  "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}],
+                  "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                  "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                  "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                  "title-lg": ["20px", {"lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                  "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                  "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                  "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-mobile py-6 sticky top-0 z-50 glass-panel">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary">close</span>
+</button>
+<div class="flex-1 px-8">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary transition-all duration-500 ease-out" id="progress-bar" style="width: 33%;"></div>
+</div>
+</div>
+<span class="font-label-caps text-label-caps text-secondary uppercase">Step <span id="current-step-num">1</span> of 3</span>
+</header>
+<main class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile pt-8 pb-32 overflow-y-auto custom-scrollbar">
+<div class="space-y-12" id="form-container">
+<!-- STEP 1: MEDIA & TITLE -->
+<section class="step-transition opacity-100 transform translate-x-0" id="step-1">
+<div class="space-y-2 mb-10">
+<h1 class="font-headline-md text-headline-md text-primary">Begin your story</h1>
+<p class="font-body-md text-on-surface-variant max-w-md">Every masterpiece starts with a vision. Share the beauty and title of your property.</p>
+</div>
+<div class="space-y-8">
+<!-- Photo Grid -->
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">MEDIA GALLERY (UP TO 6)</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-square glass-panel border-dashed border-2 border-outline-variant flex flex-col items-center justify-center cursor-pointer group hover:border-secondary transition-colors rounded-xl">
+<span class="material-symbols-outlined text-secondary text-3xl group-hover:scale-110 transition-transform">add_a_photo</span>
+<span class="font-label-caps text-[10px] mt-2 text-on-surface-variant">ADD PHOTO</span>
+</div>
+<div class="aspect-square relative rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="A high-end architectural villa with large floor-to-ceiling glass windows reflecting a serene sunset. The building is made of warm limestone and dark steel, surrounded by lush, manicured gardens. The overall mood is peaceful and luxurious, emphasizing the HAVN brand aesthetic of organic futurism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCWLBUTNSXzUmWK2pMPUNH-SLjLiqk-ME3DulEFQKe85XmA8uCj54BthTrVafJ-KCc6MXGwyPlHdL7Img5XW4szwFhYOBSWAGm_9SVjXZxeIkf8ZiNSKlmTVrm-8oZsOJOVWkaNV6nIQV7ARDkE1b2aKhng-AQ7qoZOIlQvSQkPIj2tyB1NcjNFH10oT92fatzozsPXEK_HRyWd1sXSi27W9_SHQLFWVckIL6AFOM9HzKC7vC-FaFai32gJw-s2LeoWydWn0Stxnm2"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white cursor-pointer">delete</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Title Input -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">PROPERTY TITLE</label>
+<input class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-5 px-6 font-headline-md text-headline-md text-primary placeholder:text-outline-variant transition-all focus:bg-white" placeholder="e.g. The Obsidian Sanctuary" type="text"/>
+</div>
+<!-- Description Input -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">DESCRIPTION</label>
+<textarea class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-5 px-6 font-body-md text-primary placeholder:text-outline-variant transition-all focus:bg-white resize-none" placeholder="Narrate the living experience..." rows="4"></textarea>
+</div>
+</div>
+</section>
+<!-- STEP 2: DETAILS & PRICING -->
+<section class="step-transition hidden opacity-0 transform translate-x-12" id="step-2">
+<div class="space-y-2 mb-10">
+<h1 class="font-headline-md text-headline-md text-primary">Define the essence</h1>
+<p class="font-body-md text-on-surface-variant max-w-md">The architecture is in the details. Specify the dimensions and investment value.</p>
+</div>
+<div class="space-y-8">
+<!-- Property Type Chips -->
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">PROPERTY TYPE</label>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 rounded-full border border-primary/10 bg-primary text-white font-label-caps text-label-caps">HOUSE</button>
+<button class="px-6 py-3 rounded-full border border-primary/10 bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors">APARTMENT</button>
+<button class="px-6 py-3 rounded-full border border-primary/10 bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors">VILLA</button>
+<button class="px-6 py-3 rounded-full border border-primary/10 bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container transition-colors">STUDIO</button>
+</div>
+</div>
+<!-- Steppers -->
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">BEDROOMS</label>
+<div class="flex items-center justify-between glass-panel px-4 py-3 rounded-xl border border-primary/10">
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-surface-container rounded-full">-</button>
+<span class="font-title-lg text-title-lg text-primary">02</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-surface-container rounded-full">+</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">BATHROOMS</label>
+<div class="flex items-center justify-between glass-panel px-4 py-3 rounded-xl border border-primary/10">
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-surface-container rounded-full">-</button>
+<span class="font-title-lg text-title-lg text-primary">01</span>
+<button class="w-8 h-8 flex items-center justify-center text-primary hover:bg-surface-container rounded-full">+</button>
+</div>
+</div>
+</div>
+<!-- Area and Price -->
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">AREA (SQ FT)</label>
+<input class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-4 px-6 font-title-lg text-title-lg text-primary transition-all" placeholder="e.g. 2400" type="number"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">LISTING PRICE ($)</label>
+<div class="relative">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 font-title-lg text-secondary">$</span>
+<input class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-4 pl-12 pr-6 font-title-lg text-title-lg text-primary transition-all" placeholder="0.00" type="number"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STEP 3: LOCATION -->
+<section class="step-transition hidden opacity-0 transform translate-x-12" id="step-3">
+<div class="space-y-2 mb-10">
+<h1 class="font-headline-md text-headline-md text-primary">The Haven's Anchor</h1>
+<p class="font-body-md text-on-surface-variant max-w-md">Precision in placement ensures the right souls find your retreat.</p>
+</div>
+<div class="space-y-6">
+<div class="relative h-64 w-full rounded-2xl overflow-hidden border border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist abstract map design in soft cream and charcoal tones, with a single elegant circular pin indicating a location." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwceoiqrouAnPAnvUiqjz23PtQbn8KqbBXrg5VEGY1ghokcGMgsgt_8O9yPPFTGKbenaZQTvGhEikvZUiE8dikLgn6H-ETQ_IhAHqxeBFlblwOetjlQHUzIjQRq-4dJHayQxBTlOP-c1glGLJGw_QU9p8L2_N34RcjmM6oiAqiJWXOPfiBIdX_2jsxQVGL5NCcTxtLEzfywnwCipilP7ztXTlRJFdr-OdxFB49N_wsEAj1Zgs4YYbzZY5yOm9ycZV9xDRg9gxNsAAk"/>
+<button class="absolute bottom-4 right-4 glass-panel px-4 py-2 rounded-full flex items-center gap-2 shadow-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary text-sm">my_location</span>
+<span class="font-label-caps text-label-caps text-primary">DETECT LOCATION</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">STREET ADDRESS</label>
+<input class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-4 px-6 font-body-md" placeholder="123 Sanctuary Drive" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block">CITY</label>
+<input class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-4 px-6 font-body-md" placeholder="Dubai, UAE" type="text"/>
+</div>
+</div>
+<!-- Latitude & Longitude moved from Step 1 -->
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase">Latitude</label>
+<input class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-4 px-6 font-body-md text-primary placeholder:text-outline-variant transition-all focus:bg-white" placeholder="0.0000" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase">Longitude</label>
+<input class="w-full bg-surface-container-low border border-primary/10 rounded-xl py-4 px-6 font-body-md text-primary placeholder:text-outline-variant transition-all focus:bg-white" placeholder="0.0000" type="text"/>
+</div>
+</div>
+<div class="flex items-center justify-between glass-panel p-6 rounded-2xl border border-primary/10">
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Featured Selection</h4>
+<p class="text-body-sm text-on-surface-variant">Promote this as a premium highlight on the HAVN homepage.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Sticky Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full glass-panel px-margin-mobile py-6 z-50 flex items-center justify-between gap-4 border-t border-primary/10">
+<button class="hidden font-label-caps text-label-caps text-on-surface-variant px-6 py-4 rounded-xl hover:bg-surface-container transition-colors uppercase" id="prev-btn">
+      Previous
+    </button>
+<button class="flex-1 bg-primary text-white font-label-caps text-label-caps py-4 rounded-xl shadow-lg hover:shadow-xl transition-all active:scale-95 uppercase tracking-widest" id="next-btn">
+      Continue
+    </button>
+</footer>
+<!-- Script for Step Logic -->
+<script>
+    let currentStep = 1;
+    const totalSteps = 3;
+    const progressBar = document.getElementById('progress-bar');
+    const currentStepNum = document.getElementById('current-step-num');
+    const nextBtn = document.getElementById('next-btn');
+    const prevBtn = document.getElementById('prev-btn');
+
+    function updateSteps() {
+      // Update UI classes
+      for (let i = 1; i <= totalSteps; i++) {
+        const stepEl = document.getElementById(`step-${i}`);
+        if (i === currentStep) {
+          stepEl.classList.remove('hidden');
+          setTimeout(() => {
+            stepEl.classList.remove('opacity-0', 'translate-x-12', 'translate-x-[-12px]');
+            stepEl.classList.add('opacity-100', 'translate-x-0');
+          }, 50);
+        } else {
+          stepEl.classList.add('hidden', 'opacity-0');
+          stepEl.classList.add(i < currentStep ? 'translate-x-[-12px]' : 'translate-x-12');
+        }
+      }
+
+      // Update Progress
+      const progress = (currentStep / totalSteps) * 100;
+      progressBar.style.width = `${progress}%`;
+      currentStepNum.innerText = currentStep;
+
+      // Update Buttons
+      if (currentStep === 1) {
+        prevBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+      }
+
+      if (currentStep === totalSteps) {
+        nextBtn.innerText = 'List Property';
+        nextBtn.classList.remove('bg-primary');
+        nextBtn.classList.add('bg-secondary');
+      } else {
+        nextBtn.innerText = 'Continue';
+        nextBtn.classList.remove('bg-secondary');
+        nextBtn.classList.add('bg-primary');
+      }
+    }
+
+    nextBtn.addEventListener('click', () => {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateSteps();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert('Your sanctuary has been submitted for review.');
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateSteps();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  </script>
+</body></html>
